@@ -11,10 +11,9 @@ $gl-lg         : "screen and (max-width: 80em)";   // max 1280px
 table { 
   border-spacing: 1; 
   border-collapse: collapse; 
-  background:var(--color-grey-light-1);
+  background:#e8e4e469;
   border-radius:6px;
   overflow:hidden;
-  //max-width:800px; 
   width:100%;
   margin:0 auto;
   position:relative;
@@ -22,16 +21,12 @@ table {
   *{ position:relative }
   
   td,th { 
-    padding:10px 25px
-  }
-
-  td {
-    outline: auto;
+    padding:10px
   }
 
   thead tr { 
     height:60px;
-    background:#efe6e6;
+    background:#e8e4e469;
     font-size:16px;
   }
   
@@ -46,13 +41,22 @@ table {
     }
   }
   
- 	td { text-align:center;
+ 	td { 
+    text-align:center;
     font-family: monospace;
+    border: 2px solid #d4cbcb;
+    width: 10rem;
+    height: 15rem;
 	}
 
-  th { text-align:center;
+  th { 
+    text-align:center;
     font-family: monospace;
 	}
+}
+
+.selected {
+  background-color: #cec8c887;
 }
 
 .green {
@@ -79,11 +83,11 @@ table {
   background-image: linear-gradient(to right bottom, #d81616, #5d0b0b);
 }
 
-@media #{$gl-xs}{  
+@media #{$gl-sm}{  
   table { 
-    display:block;
 	  > *,tr,td,th { 
-      display:block 
+      font-size: 0.8rem;
+      padding: 5px;
     }   
     thead { 
       display:none 
@@ -93,8 +97,7 @@ table {
       padding:8px 0px; 
       cursor: pointer;
       td { 
-        padding-left:45%; 
-        margin-bottom:12px;
+          height: 12rem;
         &:last-child { 
           margin-bottom:0 
         }
@@ -106,10 +109,6 @@ table {
           top:0
         }
         
-        &:nth-child(1):before { content:"City";}
-        &:nth-child(2):before { content:"Current A.Q.I";}
-        &:nth-child(3):before { content:"Status";}
-        &:nth-child(4):before { content:"Last Updated";}
       }        
     }
   }

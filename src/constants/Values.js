@@ -35,7 +35,7 @@ export const SLOT_LABELS = [
     "One little duck",
     "Four and seven",
     "Cup of tea",
-    "48 – Four dozen",
+    "Four dozen",
     "Knock at the door",
     "PC",
     "Man alive",
@@ -113,7 +113,7 @@ export const SLOT_LABELS = [
     "Time for fun",
     "Between the sticks",
     "Winnie the Pooh",
-    " Torquay in Devon",
+    "Torquay in Devon",
     "Down on your knees",
     "Two fat ladies",
     "Droopy drawers",
@@ -122,4 +122,4 @@ export const SLOT_LABELS = [
     "Top of the shop",
 ]
 
-export const FREE_SLOT = "IT'S FREE";
+export const FREE_SLOT = "DON'T MIND ME, IT'S FREE";

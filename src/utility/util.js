@@ -8,11 +8,11 @@ export const createCard = (row , column) => {
     for (let i=0;i<row;i++) {
         card[i] = new Array(column);
         for(let j=0;j<column; j++) {
-            if ( i === row/2 && j === column/2) {
-                card[row][column] = FREE_SLOT;
+            if ( i === Math.floor(row/2) && j === Math.floor(column/2)) {
+                card[i][j] = FREE_SLOT;
             } else {
                 let slot = Math.floor(Math.random()*90);
-                while (usedSlot[slot]) slot = Math.floor(Math.random()*91);
+                while (usedSlot[slot]) slot = Math.floor(Math.random()*90);
                 card[i][j] = SLOT_LABELS[slot];
                 usedSlot[slot] = true;
             }

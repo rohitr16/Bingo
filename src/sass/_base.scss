@@ -61,14 +61,14 @@ body {
   line-height: 1.6;
   color: var(--color-black-dark-1);
   background-image: linear-gradient(to right bottom,  #010201, #000a03), url(../assets/nat-10.jpg);
-  background-size: inherit;
+  background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: screen;
   min-height: 100vh;
   box-sizing:border-box;
   @media only screen and (max-width: $bp-largest) {
     background-size: cover;           
-}
+  }
 }
   
 blockquote {

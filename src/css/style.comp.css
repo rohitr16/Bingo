@@ -9,7 +9,7 @@ onlt-screen: media query applies only on screen not printed version
 table {
   border-spacing: 1;
   border-collapse: collapse;
-  background: var(--color-grey-light-1);
+  background: #e8e4e469;
   border-radius: 6px;
   overflow: hidden;
   width: 100%;
@@ -18,12 +18,10 @@ table {
   table * {
     position: relative; }
   table td, table th {
-    padding: 10px 25px; }
-  table td {
-    outline: auto; }
+    padding: 10px; }
   table thead tr {
     height: 60px;
-    background: #efe6e6;
+    background: #e8e4e469;
     font-size: 16px; }
   table tbody tr {
     height: 48px;
@@ -35,10 +33,16 @@ table {
       border: 0; }
   table td {
     text-align: center;
-    font-family: monospace; }
+    font-family: monospace;
+    border: 2px solid #d4cbcb;
+    width: 10rem;
+    height: 15rem; }
   table th {
     text-align: center;
     font-family: monospace; }
+
+.selected {
+  background-color: #cec8c887; }
 
 .green {
   background-image: linear-gradient(to right bottom, #579a57, #065d06); }
@@ -58,36 +62,26 @@ table {
 .maroon {
   background-image: linear-gradient(to right bottom, #d81616, #5d0b0b); }
 
-@media screen and (max-width: 35.5em) {
-  table {
-    display: block; }
-    table > *, table tr, table td, table th {
-      display: block; }
-    table thead {
-      display: none; }
-    table tbody tr {
-      height: auto;
-      padding: 8px 0px;
-      cursor: pointer; }
-      table tbody tr td {
-        padding-left: 45%;
-        margin-bottom: 12px; }
-        table tbody tr td:last-child {
-          margin-bottom: 0; }
-        table tbody tr td:before {
-          position: absolute;
-          font-weight: 700;
-          width: 40%;
-          left: 10px;
-          top: 0; }
-        table tbody tr td:nth-child(1):before {
-          content: "City"; }
-        table tbody tr td:nth-child(2):before {
-          content: "Current A.Q.I"; }
-        table tbody tr td:nth-child(3):before {
-          content: "Status"; }
-        table tbody tr td:nth-child(4):before {
-          content: "Last Updated"; } }
+@media screen and (max-width: 48em) {
+  table > *, table tr, table td, table th {
+    font-size: 0.8rem;
+    padding: 5px; }
+  table thead {
+    display: none; }
+  table tbody tr {
+    height: auto;
+    padding: 8px 0px;
+    cursor: pointer; }
+    table tbody tr td {
+      height: 12rem; }
+      table tbody tr td:last-child {
+        margin-bottom: 0; }
+      table tbody tr td:before {
+        position: absolute;
+        font-weight: 700;
+        width: 40%;
+        left: 10px;
+        top: 0; } }
 
 :root {
   --color-primary: #eb2f64;
@@ -132,7 +126,7 @@ body {
   line-height: 1.6;
   color: var(--color-black-dark-1);
   background-image: linear-gradient(to right bottom, #010201, #000a03), url(../assets/nat-10.jpg);
-  background-size: inherit;
+  background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: screen;
   min-height: 100vh;
@@ -146,10 +140,15 @@ blockquote {
   text-align: center; }
 
 .container {
-  max-width: 80rem;
+  max-width: 75vw;
   margin: 15rem auto;
   box-shadow: var(--shadow-dark);
-  min-height: 68vh; }
+  min-height: 68vh;
+  background-image: linear-gradient(to right bottom, #d0ecda, #0a6653);
+  padding: 20px;
+  border-radius: 5px; }
+  .container_span {
+    font-family: monospace; }
   @media only screen and (max-width: 75em) {
     .container {
       margin: 0;
@@ -158,18 +157,25 @@ blockquote {
       width: 100%; } }
   .container__link {
     text-decoration: none;
-    font-family: ui-rounded;
-    position: fixed;
-    top: 10rem;
-    left: 50%;
-    transform: translate(-50%); }
+    font-family: fantasy; }
   .container__button {
     color: #0c0101;
     font-size: 3rem;
-    padding: 7px 10px;
+    padding: 10px;
     box-shadow: 0 0rem 1rem #7b6d6d;
-    border-radius: 20px;
-    background-image: linear-gradient(to right bottom, #80e2d5, #127b63); }
+    border-radius: 5px;
+    background-image: linear-gradient(to right bottom, #aee2db36, #0e624f6b); }
+  .container p {
+    font-size: 2em;
+    font-family: monospace;
+    margin-top: 20px;
+    text-align: justify;
+    padding: 15px; }
+
+h1 {
+  font-size: 4em;
+  font-family: fantasy;
+  color: darkslategray; }
 
 .header {
   width: 100vw;
@@ -179,23 +185,78 @@ blockquote {
   left: 0;
   background-image: linear-gradient(to right bottom, #5584a9, #e2b96ee0);
   z-index: 9;
-  box-shadow: 0 0.5rem 6rem #b5a4a4; }
+  box-shadow: 0 0.5rem 6rem #b5a4a4;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px; }
   .header__logo {
     background-image: url(../assets/logo-white.png);
     height: 5rem;
     width: 6rem;
     background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    left: 1%; }
+    background-size: contain; }
     .header__logo--text {
       position: absolute;
       left: 100%;
       font-size: 1.2rem;
       font-family: monospace;
       color: #e0c99d; }
+
+.modal_overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer; }
+
+.modal_container {
+  position: fixed;
+  width: 80vw;
+  height: 60vw;
+  z-index: 99;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+
+.modal_content {
+  width: 100%;
+  height: 100%;
+  background-color: #eaeaf7;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  background-image: linear-gradient(45deg, #db3f3f, #d7821ad1);
+  justify-content: center; }
+  .modal_content span {
+    font-size: 8rem;
+    color: #e20d0d; }
+    @media only screen and (max-width: 56.25em) {
+      .modal_content span {
+        font-size: 6rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .modal_content span {
+        font-size: 3rem; } }
+  .modal_content button {
+    width: 10rem;
+    height: 4rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.06);
+    background-color: #dc6b6b9c;
+    border-radius: 5px;
+    border: 1px solid #be5050;
+    align-self: center;
+    z-index: 9; }
+    @media only screen and (max-width: 56.25em) {
+      .modal_content button {
+        font-size: 1.8rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .modal_content button {
+        font-size: 1.5rem; } }
 
 .back_button {
   font-size: 4rem;
