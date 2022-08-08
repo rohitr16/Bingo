@@ -217,40 +217,48 @@ h1 {
 
 .modal_container {
   position: fixed;
-  width: 80vw;
-  height: 60vw;
+  width: 100vw;
+  height: 100vh;
   z-index: 99;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  border-radius: 5px; }
 
 .modal_content {
-  width: 100%;
-  height: 100%;
+  width: 70vw;
+  height: 55vh;
   background-color: #eaeaf7;
   display: flex;
   padding: 20px;
   flex-direction: column;
   background-image: linear-gradient(45deg, #db3f3f, #d7821ad1);
-  justify-content: center; }
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  z-index: 9; }
   .modal_content span {
-    font-size: 8rem;
+    font-size: 6.5rem;
     color: #e20d0d; }
     @media only screen and (max-width: 56.25em) {
       .modal_content span {
-        font-size: 6rem; } }
+        font-size: 5.5rem; } }
     @media only screen and (max-width: 37.5em) {
       .modal_content span {
-        font-size: 3rem; } }
+        font-size: 2rem; } }
   .modal_content button {
     width: 10rem;
     height: 4rem;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5);
     background-color: #dc6b6b9c;
     border-radius: 5px;
-    border: 1px solid #be5050;
+    border: none;
     align-self: center;
-    z-index: 9; }
+    z-index: 9;
+    cursor: pointer; }
     @media only screen and (max-width: 56.25em) {
       .modal_content button {
         font-size: 1.8rem; } }
