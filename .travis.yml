@@ -1,0 +1,19 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t rohitr1612/docker-react -f Dockerfile.dev .
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "ap-south-1"
+#   app: "docker-react-aqi"
+#   env: "Dockerreactaqi-env"
+#   bucket: "elasticbeanstalk-ap-south-1-036539392772"
+#   bucket_path: "docker-react-aqi"
+#   on:
+#     branch: main
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: "$AWS_SECRET_KEY"
