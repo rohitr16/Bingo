@@ -1,0 +1,116 @@
+// sets
+
+$gl-ms         : "screen and (max-width: 23.5em)"; // up to 360px
+$gl-xs         : "screen and (max-width: 35.5em)"; // up to 568px
+$gl-sm         : "screen and (max-width: 48em)";   // max 768px
+$gl-md         : "screen and (max-width: 64em)";   // max 1024px
+$gl-lg         : "screen and (max-width: 80em)";   // max 1280px
+
+// table style
+
+table { 
+  border-spacing: 1; 
+  border-collapse: collapse; 
+  background:var(--color-grey-light-1);
+  border-radius:6px;
+  overflow:hidden;
+  //max-width:800px; 
+  width:100%;
+  margin:0 auto;
+  position:relative;
+  
+  *{ position:relative }
+  
+  td,th { 
+    padding:10px 25px
+  }
+
+  td {
+    outline: auto;
+  }
+
+  thead tr { 
+    height:60px;
+    background:#efe6e6;
+    font-size:16px;
+  }
+  
+  tbody tr { 
+    height:48px;
+    cursor: pointer; 
+    border-bottom:1px solid #E3F1D5 ;
+    font-size: 16px;
+    font-weight: 500;
+    &:last-child { 
+      border:0; 
+    }
+  }
+  
+ 	td { text-align:center;
+    font-family: monospace;
+	}
+
+  th { text-align:center;
+    font-family: monospace;
+	}
+}
+
+.green {
+  background-image: linear-gradient(to right bottom, #579a57 , #065d06);
+}
+
+.red {
+  background-image: linear-gradient( to right bottom ,#e47e7e , #da1212);
+}
+
+.orange {
+  background-image: linear-gradient(to right bottom, #f3b84d , #de940b);
+}
+
+.yellow {
+  background-image: linear-gradient(to right bottom, #dede16 , #a2a210);
+}
+
+.lightGreen {
+  background-image: linear-gradient(to right bottom, #a6efa6, #08ca08);
+}
+
+.maroon {
+  background-image: linear-gradient(to right bottom, #d81616, #5d0b0b);
+}
+
+@media #{$gl-xs}{  
+  table { 
+    display:block;
+	  > *,tr,td,th { 
+      display:block 
+    }   
+    thead { 
+      display:none 
+    }
+    tbody tr { 
+      height:auto; 
+      padding:8px 0px; 
+      cursor: pointer;
+      td { 
+        padding-left:45%; 
+        margin-bottom:12px;
+        &:last-child { 
+          margin-bottom:0 
+        }
+        &:before { 
+          position:absolute;
+          font-weight:700;
+          width:40%;
+          left:10px;
+          top:0
+        }
+        
+        &:nth-child(1):before { content:"City";}
+        &:nth-child(2):before { content:"Current A.Q.I";}
+        &:nth-child(3):before { content:"Status";}
+        &:nth-child(4):before { content:"Last Updated";}
+      }        
+    }
+  }
+}  	
