@@ -1,6 +1,7 @@
 import React from "react";
+import {ROW, COLUMN} from '../constants/Values';
 
-export default function Modal({closeModal, jackPot}) {
+export default function Modal({closeModal, jackPot, totalBingos}) {
     const getContent = () => {
         if (jackPot) {
             return (
@@ -15,6 +16,7 @@ export default function Modal({closeModal, jackPot}) {
                 <div className="modal_content">
                     <span>!!CONGRATULATIONS!!</span>
                     <span>IT'S A BINGO!!</span>
+                    <span><b>{totalBingos}</b> bingo so far, {ROW + COLUMN + 2 - totalBingos} more to go  </span>
                     <button onClick={closeModal}>Close</button>
                 </div>
             );

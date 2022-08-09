@@ -15,7 +15,7 @@ class Board extends Component {
             showModal: false,
             jackPot: false
         };
-        this.totalClicks = 0;
+        this.totalBingos = 0;
     }
 
     componentDidMount () {
@@ -71,29 +71,31 @@ class Board extends Component {
         if (slotsAnnounced[rowInt][colInt] === true) {
             return;
         }
-        this.totalClicks++;
-        if (this.totalClicks === ROW*COLUMN - 1) {
-            this.setState({jackPot: true});
-        }
+
         const temp = [...slotsAnnounced];
         temp[parseInt(row.value)][parseInt(column.value)] = true;
         setSelectedSlot(temp);
-        this.checkLineBingo(rowInt, colInt);
-        if (rowInt === colInt || rowInt === COLUMN - colInt - 1) this.checkDiagonalBingo(rowInt, colInt);
+        let bingos = this.checkLineBingo(rowInt, colInt);
+        if (rowInt === colInt || rowInt === (COLUMN - colInt - 1)) {
+            bingos += this.checkDiagonalBingo(rowInt, colInt);
+        }
+        if (bingos > 0) {
+            this.showModalAndCheckJackpot(bingos);
+        }
     }
 
     checkLineBingo = (rowInt, colInt) => {
         const {slotsAnnounced}  = this.props
 
         let count = 0;
+        let bingos = 0;
         for(let j=0;j<COLUMN;j++) {
             if (slotsAnnounced[rowInt][j] === true) {
                 count++;
             }
         }
         if (count === COLUMN) {
-            this.setState({showModal:true});
-            return;
+            bingos++;
         }
 
         count = 0;
@@ -103,15 +105,17 @@ class Board extends Component {
             }
         }
         if (count === ROW ) {
-            this.setState({showModal:true});
-            return;
+            bingos++;
         }
+
+        return bingos;
     }
 
     checkDiagonalBingo = (rowInt, colInt) => {
         const {slotsAnnounced} = this.props;
 
         let count = 0;
+        let bingos = 0;
         if (rowInt === colInt) {
             for(let i=0;i<ROW;i++) {
                 if (slotsAnnounced[i][i] === true) {
@@ -119,8 +123,7 @@ class Board extends Component {
                 }
             }
             if (count === ROW) {
-                this.setState({showModal:true}); 
-                return;
+                bingos++;
             }
         } else {
             for(let i=ROW-1;i>=0;i--) {
@@ -130,11 +133,21 @@ class Board extends Component {
             }
     
             if (count === ROW) {
-                this.setState({showModal:true});           
-                return;
+                bingos++;
             }
         }
 
+        return bingos;
+
+    }
+
+    showModalAndCheckJackpot  = (bingos) => {               
+        this.totalBingos += bingos;
+        if (this.totalBingos === (ROW + COLUMN + 2)) {
+            this.setState({showModal: true, jackPot: true});
+        } else {
+            this.setState({showModal:true});  
+        }
     }
 
     onCreateNewBoard = () => {
@@ -153,21 +166,21 @@ class Board extends Component {
                 }         
             }
         }
-        this.totalClicks = 0;
+        this.totalBingos = 0;
 
         setSelectedSlot(slotsAnnounced);
         setCardList(card);
     }
 
     closeModal = () =>  {
-        this.setState({showModal: false});
+        this.setState({showModal: false, jackPot:false});
     }
     
     render() {
         const {card, slotsAnnounced} = this.props;
         return (
             <div className="container">
-                {this.state.showModal && <Modal closeModal={this.closeModal} jackPot={this.state.jackPot} />}
+                {this.state.showModal && <Modal closeModal={this.closeModal} jackPot={this.state.jackPot} totalBingos={this.totalBingos} />}
                 <div className="container__button"  onClick={this.onCreateNewBoard}>
                     <span className="container_span"> New Game</span>
                 </div>
